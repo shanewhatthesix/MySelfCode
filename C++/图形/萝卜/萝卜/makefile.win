@@ -1,0 +1,37 @@
+# Project: ÂÜ²·
+# Makefile created by Red Panda C++ 3.1.2871
+
+CXX      = "g++.exe"
+CC       = "gcc.exe"
+WINDRES  = "windres.exe"
+RM       = del /q /f
+CD       = cd /d
+LIBS     = "-lrdrawing" "-lraylib" "-lopengl32" "-lgdi32" "-lwinmm"
+INCS     = 
+CXXINCS  = 
+CXXFLAGS = $(CXXINCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+CFLAGS   = $(INCS) "-g3" "-pipe" "-Wall" "-D_DEBUG"
+WINDRESFLAGS = 
+RES      = ÂÜ²·_private.res
+OBJ      = main.o $(RES)
+BIN      = ÂÜ²·.exe
+LINKOBJ  = "main.o" "ÂÜ²·_private.res"
+CLEANOBJ = "main.o" "ÂÜ²·_private.res" "ÂÜ²·.exe"
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	-$(RM) $(CLEANOBJ) >NUL 2>&1
+
+ÂÜ²·.exe: $(OBJ)
+
+	$(CXX) $(LINKOBJ) -o "ÂÜ²·.exe" $(LIBS)
+
+main.o: main.cpp
+	$(CXX) -c "main.cpp" -o "main.o" $(CXXFLAGS) 
+
+ÂÜ²·_private.res: ÂÜ²·_private.rc 
+	$(WINDRES) -i "ÂÜ²·_private.rc" --input-format=rc -o "ÂÜ²·_private.res" -O coff $(WINDRESFLAGS) 
+
